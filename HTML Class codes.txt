@@ -1,0 +1,52 @@
+<form action="" target="_self">
+    <label for="">Name : </label>
+    <input type="text" placeholder="Enter Name" >
+    <br>
+    <label for="">Email : </label>
+    <input type="email">
+    <br>
+    <label for="">Password :</label>
+    <input type="password" required autofocus>
+<br>
+    <label for="">Gender</label>
+    <input type="radio" name="gender" id="">
+    <label for="" >Male</label>
+    <input type="radio" name="gender" id="">
+    <label for="">FeMale</label>
+<label for="">FeMale</label>
+        <br>
+    <label for="">Department</label>
+    <input type="checkbox">
+    <label for="">Cse</label>
+    <input type="checkbox">
+    <label for="">AIML</label>
+    <BR></BR>
+    <label for="">Country</label>
+    <SELEct>
+       <option value="">INDIA</option>
+       <option value="">UAE</option>
+        <option value="">Russia</option>
+        <option value="">China</option>
+    </SELEct>
+    <br>
+    <textarea name="" id=""></textarea>
+
+<br>
+    <input type="submit">
+</form>
+
+<!-- <a href="./formfill.html">Submit</a> -->
+<!-- </form> -->
+<!-- <a href="https:/www.youtube.com">yt</a> -->
+
+<form action="">
+        <label for="">File upload</label>
+        <br>
+        <input type="file">
+        <br>
+        <input type="submit">
+        <button>submit</button>
+    </form>
+<video src="" muted controls autoplay></video>
+<audio src=""  muted controls autoplay></audio>
+<img src="" alt="">
