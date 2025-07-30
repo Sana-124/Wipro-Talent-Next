@@ -1,0 +1,571 @@
+1.//REVERSE OF STRING
+class Main {
+    public static void main(String[] args) {
+        StringBuffer buffer=new StringBuffer("game");
+        buffer.reverse();
+        System.out.println(buffer);
+    }
+}
+    (OR)
+public class ReverseString{
+   public static void main(String[] args) {
+      String str="speed";
+      StringBuilder reversed=new StringBuilder(str).reverse();
+      System.out.println(reversed);
+}
+}
+
+ 2. //TO CHECK PALINDROME OF STRING
+import java.util.Scanner;
+public class Palindrome{       //custom method to find palindrome
+public static void checkPalindrome(String inputStr) {
+String reverse = new StringBuffer(inputStr).reverse().toString();
+if (inputStr.equals(reverse)) {
+System.out.println("The Given String is Palindrome");
+} else {
+System.out.println("The Given String is Not a Palindrome");
+}
+}       //the main() method
+public static void main(String[] args) {
+System.out.println("Enter a String to Check for Palindrome");
+Scanner sc = new Scanner(System.in);
+String inputStr = sc.next();
+checkPalindrome(inputStr);
+sc.close();
+}
+}
+         (OR)
+
+public class palindrome{
+    public static void main(String[] args){
+        String str="sahana";
+        String reversed=new StringBuilder(str).reverse().toString();
+        System.out.print(str.equals(reversed));
+    }
+}
+
+3.//FIBONACCI SERIES
+
+public class Fibonacci{
+   public static void main(String[] args) {
+      int n=10,num1=0,num2=1;
+      System.out.println("fibonacci series is: "+num1+ " , " +num2);
+      for (int i=2;i<n;i++){
+      int num3=num1+num2;
+      System.out.print(","+ num3);
+      num1=num2;
+      num2=num3;
+   }
+}
+}
+
+4.//factorial of number
+
+public class Factorial {
+    public static void main(String[] args) {
+        int n=5,factorial=1;
+        for(int i=1;i<=n;i++){
+            factorial*=i;
+        System.out.println(factorial);
+    }
+}
+}
+
+5.//fizzbuzz
+public class Main
+{
+	public static void main(String[] args) {
+	    
+	    for(int i=1;i<=20;i++){
+	    if(i%3==0 && i%5==0){
+	        System.out.println("fizzbuzz");
+	    }
+	    else if(i%3==0){
+	        System.out.println("fizz");
+	    }
+	    else if(i%5==0){
+	        System.out.println("buzz");
+	    }
+	    else{
+	        System.out.println(i);
+	    }
+	    }
+	}
+}
+
+6.//palindrome of a number
+
+import java.util.Scanner;
+public class Main
+{
+	public static void main(String[] args) {
+	    Scanner sc=new Scanner(System.in);
+	    int num=sc.nextInt();
+	    int original=num;
+	    int rev=0;
+	    while(num!=0){
+	        int temp=num%10;
+	        rev=rev*10+temp;
+	        num/=10;
+	        }
+	    if(original==rev){
+	        System.out.println("palindrome");
+	    }
+	    else{
+	        System.out.println("not palindrome");
+	        
+	    }
+	}
+}
+
+7.//leap year
+import java.util.Scanner;
+public class Main
+{
+	public static void main(String[] args) {
+	    Scanner sc=new Scanner(System.in);
+	    int year=sc.nextInt();
+	   if((year%100!=0 && year%4==0)||(year%400==0 && year%100==0)){
+	       System.out.println("leap year");
+	   }
+	   else{
+	       System.out.println("not leap year");
+	   }
+	}
+}
+8.//sum of n numbers
+import java.util.Scanner;
+public class Main
+{
+	public static void main(String[] args) {
+	    Scanner sc=new Scanner(System.in);
+	    int num=sc.nextInt();
+	    int sum=0;
+	    for(int i=0;i<=num;i++){
+	        sum=sum+i;
+	    }
+	    System.out.println("sum:"+sum);
+	  
+	}
+}
+9.//to get even and odd number
+public class Main
+{
+	public static void main(String[] args) {
+	    //Scanner sc=new Scanner(System.in);
+	    int i=0;        //if we give i=1 then we will get odd number
+	    while(i<=10){
+	        System.out.println("i:"+i);
+	        i+=2;
+	    }
+	}
+}
+//using for loop
+public class Main
+{
+	public static void main(String[] args) {
+	    //Scanner sc=new Scanner(System.in);
+	    for(int i=1;i<=11;i+=2){  ///we get odd number
+	        System.out.println(i);
+	    }
+	}
+}
+
+/10./to check for prime number
+public class Main {
+    public static void main(String[] args) {
+        int num=22;
+        boolean isPrime = true;
+
+        for (int i = 2; i <= num / 2; i++) {
+            if (num % i == 0) {
+                 isPrime = false;
+                 break;
+                }
+            }
+            if (isPrime) {
+            System.out.println(num + " is a Prime Number");
+        } else {
+            System.out.println(num + " is Not a Prime Number");
+        }
+    }
+}
+11.//to sort the array
+import java.util.Arrays;
+
+public class SortArray {
+    public static void main(String[] args) {
+        int[] arr = {344, 567, 877, 223, 889, 900};
+        Arrays.sort(arr);
+        System.out.println(Arrays.toString(arr));
+    }
+}
+12.//prm to find max elements in array
+public class Main
+{
+	public static void main(String[] args) {
+	    int arr[]={34,55,66,68};
+	    int max=arr[0];
+	    for(int i=1;i<arr.length;i++){
+	        if(arr[i]>max)max=arr[i];
+	    }
+	    System.out.println(max);
+	}
+}
+13.//prgm to reverse the elements in array
+public class Main
+{
+	public static void main(String[] args) {
+	    int arr[]={34,55,66,68};
+	    for(int i=arr.length-1;i>=0;i--){
+	    System.out.println(arr[i]+" ");
+	}
+}
+}
+14.//find the max nd min element in array
+public class Main {
+    public static void main(String[] args) {
+        int arr[] = {34, 55, 66, 68};
+        int max = arr[0], min = arr[0];
+
+        for (int i = 1; i < arr.length; i++) {
+            if (arr[i] > max) max = arr[i];
+            if (arr[i] < min) min = arr[i];
+        }
+
+        System.out.println("max: " + max + " min: " + min);
+    }
+}
+
+15.//to find 3rd minimal element in a array
+import java.util.Arrays;
+public class Main {
+    public static void main(String[] args) {
+        int[] a={2,4,5,3,7,9};
+        Arrays.sort(a);
+        System.out.println(a[2]);
+    }
+}
+16.//to print the addition of two matrices result
+public class Main
+{
+	public static void main(String[] args) {
+	    int[][] A={{1,2,3},{4,5,6}};
+	    int[][] B={{9,8,7},{5,4,3}};
+	    int rows=A.length;
+	    int cols=A[0].length;
+	    
+	    int[][] result=new int[rows][cols];
+	    for(int i=0;i<rows;i++){
+	        for(int j=0;j<cols;j++){
+	            result[i][j]=A[i][j]+B[i][j];
+	            
+	        }
+	    }
+	         for(int i=0;i<rows;i++){
+	        for(int j=0;j<cols;j++){
+	            System.out.println(result[i][j]+" ");
+	        
+	    }
+	    
+	  
+	}
+}
+}
+17.//spiral matrix
+
+
+public class Main{
+    public static void printspiral(int[][] mat) {
+        if (mat.length==0) return;
+        
+        int top=0;
+        int bottom=mat.length-1;
+        int left=0;
+        int right=mat[0].length-1;
+        while (top<=bottom && left<=right) {
+            for (int i =left; i<=right;i++) {
+                System.out.print(mat[top][i]+ " ");
+            }
+            top++;
+            
+             for (int i =top; i<=bottom;i++) {
+                System.out.print(mat[i][right]+ " ");
+            }
+            right--;
+            if (top<=bottom) {
+                for (int i =right; i>=left;i--) {
+                System.out.print(mat[bottom][i]+ " ");
+            }
+            bottom--;
+            }
+            
+            if (left<=right) {
+                for (int i =bottom; i>=top;i--) {
+                System.out.print(mat[i][left]+ " ");
+            }
+            left++;
+            }
+            
+        }
+        
+    }
+    public static void main (String[] args) {
+        int[][] mat={{1,2,3},
+                     {4,5,6},
+                     {7,8,9}};
+                     printspiral(mat);
+        }
+}
+
+18.//sum of first 10 real no's
+
+int[] numbers =new int[10];
+for (int i=0;i<numbers.length;i++){
+numbers[i]=i+1;
+}
+int sum=0;
+for(int num:numbers){
+sum=+num;
+}
+S.O.P("Sum:"+sum);
+}
+}
+
+19.//sum of first 20 odd and even no's
+class firstn_odd_even {
+    public static void main(String[] args) {            
+       
+        int odd_sum=0;
+        int even_sum=0;
+ 
+        for (int i = 1; i<=20; i++) {
+            if (i % 2 != 0) {
+                odd_sum += i;
+            } else {
+                even_sum += i;
+            }
+        }
+        System.out.println("Sum of first 20 odd numbers: " + odd_sum);
+        System.out.println("Sum of first 20 even numbers: " + even_sum);
+    }
+}
+20.//to print first 10 even nd odd numbers
+public class EvenOdd {
+    public static void main(String[] args) {
+        System.out.println("First 20 Even and Odd Numbers:");
+ 
+        for (int i = 1; i <= 20; i++) {
+            int even = i * 2;
+            int odd = (2 * i) - 1;
+ 
+            System.out.println("Even: " + even + " | Odd: " + odd);
+        }
+    }
+}
+
+21.//to get the sum of even digits in a number
+public class main{
+public int EvenDigitsSum(int input1){
+
+public static void main(String[] args){
+int sum=0;
+while(input1>0){
+int digit=input%10; //gets last digit of num using modulo operation
+if(digit%2==0){
+sum+=digit;
+}
+input1/=10; //Removes the last digit from input1 by integer division
+}
+return sum;
+}
+}
+22.//to reverse the number
+public class ReverseNumber
+{
+	public static void main(String[] args) {
+	    int num=12345;
+	     int reversed=0;
+	     int digit;
+	    while(num!=0){
+	        digit=num%10;         //to get last no of digit
+	        reversed=reversed*10+digit%10;  //
+	        num/=10;
+	    }
+		System.out.println(reversed);
+	}
+}
+23.//to print the largest no in array
+public class Main
+{
+	public static void main(String[] args) {
+	    int arr[]={1,2,3,4,5};
+	     int largest=arr[0];// 1 is initialized to largest
+	     for(int num:arr){   //num is next no in array=2,3,4,5
+	    if(num>largest){
+	        largest=num;
+	    }
+	}
+	System.out.println(largest);
+}
+}
+24.//to check the Armstrong number-sum of cubes is equal to number itself
+eg:153=1^3+5^3+3^3=1+125+27=153
+public class Main
+{
+	public static void main(String[] args) {
+	    int num=153;
+	     int temp=num;
+	    int sum=0;
+	    while(temp!=0){
+	        int digit=temp%10;
+	        sum+=Math.pow(digit,3);
+	        temp/=10;
+	    }
+	    System.out.println(num == sum);
+	}
+	     
+}
+25.//GCD=Euclidean distance
+GCD(a,b)=GCD(b,a%b)
+public class Main
+{
+	public static void main(String[] args) {
+	    int a=60;
+	     int b=22;
+	    while(b!=0){
+	        int temp=b;
+	        b=a%b;
+	        a=temp;
+	    }
+	    System.out.println(a);
+	}
+	     
+}
+26.//count the no of digits in a number
+public class Main
+{
+	public static void main(String[] args) {
+	    int num=128987654;
+	    int count=0; 
+	    if(num==0){        //**use  int count=String.valueOf(num).length();**
+	        System.out.println(1);
+	    }
+	    else{
+	        while(num!=0){
+	            num/=10;
+	            count++;
+	        }
+	    }
+	    System.out.println(count);
+	}
+	     
+}
+27.//to count the characters in a word or sentence
+public class Main
+{
+	public static void main(String[] args) {
+	   String name="i love sana";
+	    int count=name.length();
+	    System.out.println(count);
+	}
+	     
+}
+28.//to count the number of digits in a array
+public class Main {
+    public static void main(String[] args) {
+     int[] arr={123,45,66,33};
+     int totaldigits=0;
+     for(int num:arr){
+        int n=Math.abs(num);//handles  (-)ve no's
+            
+           if(n==0){
+               totalDigits++;
+           }else{
+              while(n>0){
+                     n/=10;
+                     totalDigits+=1;
+}
+}
+}
+System.out.println(totalDigits);
+}
+}
+29.//to swap two numbers
+public class Main {
+    public static void main(String[] args) {
+       int a=12;
+       int b=23;
+       a=a+b;
+       b=a-b;
+       a=a-b;
+       
+        System.out.println("a:"+ a + "b:" + b );
+    }
+}
+30.//convert decimal num to binary...o/p=10
+public class Main {
+    public static void main(String[] args) {
+       int num=10;
+       String binary=Integer.toBinaryString(num);
+        System.out.println(binary);
+    }
+}
+31.//to check for a perfect number
+A perfect number is a number that is equal to the sum of its proper divisors(excluding itself).
+6 → divisors: 1, 2, 3 → 1 + 2 + 3 = 6 ✔️
+
+28 → divisors: 1, 2, 4, 7, 14 → 1 + 2 + 4 + 7 + 14 = 28 ✔️
+public class Main {
+    public static void main(String[] args) {
+       int num=28;
+       int sum=0;
+       for(int i=1;i<=num/2;i++){
+           if(num%i==0){
+               sum+=i;
+           }
+       }
+        System.out.println(num==sum);
+    }
+}
+
+32.//to find the missing num from the array
+public class Main {
+    public static void main(String[] args) {
+       int[] arr={1,2,3,5};
+       int n=arr.length+1;
+//since one number is missing from the sequence 1 to n, the total count of numbers should be 5
+       int total=n*(n+1)/2;
+
+//formula to calculate the sum of the first n natural numbers:
+       for(int num:arr){
+           total-=num;
+       }
+        System.out.println(total);
+    }
+}
+//33.anagram=An anagram is a word or phrase formed by rearranging the letters of another word or phrase, using all original letters exactly once.
+import java.util.Arrays;
+public class Main {
+    public static void main(String[] args) {
+       String s1="listen",s2="silent";
+       char[] arr1=s1.toCharArray();    //string to char['l','i','s','t','t','e','n']
+       char[] arr2=s2.toCharArray();
+       Arrays.sort(arr1);              //in asc(alphabetical) order
+       Arrays.sort(arr2);
+        System.out.println(Arrays.equals(arr1,arr2));        //checks if all char are present
+    }
+}
+//34.
+
+
+
+
+
+
+
+
+
+
+
+
