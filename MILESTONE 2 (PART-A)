@@ -1,1 +1,414 @@
+1.GET CODE THROUGH STRINGS 
+import java.io.*;
+import java.util.*;
+
+class UserMainCode {
+
+    public int getcodeThroughStrings(String input1) {
+        // Split the input string into words based on spaces
+        String[] words = input1.split(" ");
+
+        int totalLength = 0;
+        // Calculate the sum of the lengths of all words
+        for (String word : words) {
+            totalLength += word.length();
+        }
+
+        // Continuously add digits until a single-digit number is obtained
+        while (totalLength >= 10) {
+            int sumOfDigits = 0;
+            String totalLengthStr = String.valueOf(totalLength);
+            for (char digitChar : totalLengthStr.toCharArray()) {
+                sumOfDigits += Character.getNumericValue(digitChar);
+            }
+            totalLength = sumOfDigits;
+        }
+
+        return totalLength;
+    }
+}
+2.ADDITION USING STRINGS
+import java.io.*;
+import java.util.*;
+
+class UserMainCode {
+
+    public String addNumberStrings(String input1, String input2) {
+        StringBuilder result = new StringBuilder();
+
+        // Pointers for the end of each string
+        int i = input1.length() - 1;
+        int j = input2.length() - 1;
+        int carry = 0; // Initialize carry to 0
+
+        // Loop until both strings are fully traversed and there's no carry
+        while (i >= 0 || j >= 0 || carry > 0) {
+            int digit1 = 0;
+            if (i >= 0) {
+                digit1 = input1.charAt(i) - '0'; // Convert char to int
+                i--;
+            }
+
+            int digit2 = 0;
+            if (j >= 0) {
+                digit2 = input2.charAt(j) - '0'; // Convert char to int
+                j--;
+            }
+
+            int sum = digit1 + digit2 + carry; // Calculate sum of current digits and carry
+            result.append(sum % 10); // Append the last digit of the sum to the result
+            carry = sum / 10; // Update carry for the next iteration
+        }
+
+        // The result is built in reverse, so reverse it before returning
+        return result.reverse().toString();
+    }
+}
+
+3.SIMPLE ENCODED ARRAY
+import java.io.*;
+import java.util.*;
+
+class UserMainCode {
+
+    public static class Result {
+        public final int output1;
+        public final int output2;
+
+        public Result(int out1, int out2) {
+            this.output1 = out1;
+            this.output2 = out2;
+        }
+    }
+
+    public Result findOriginalFirstAndSum(int[] input1, int input2) {
+        int n = input2; // input2 represents the number of elements in the array input1
+        int[] encodedArray = input1; // input1 represents the encoded array
+
+        int[] originalArray = new int[n];
+
+        // The last element of the encoded array is the same as the last element of the original array
+        originalArray[n - 1] = encodedArray[n - 1];
+
+        // Decode the array from right to left
+        // encodedArray[i] = originalArray[i] + originalArray[i+1]
+        // So, originalArray[i] = encodedArray[i] - originalArray[i+1]
+        for (int i = n - 2; i >= 0; i--) {
+            originalArray[i] = encodedArray[i] - originalArray[i + 1];
+        }
+
+        // output1: find the value of the first number of the original array
+        int firstOriginalNumber = originalArray[0];
+
+        // output2: find the sum of all numbers in the original array
+        int sumOfOriginalNumbers = 0;
+        for (int i = 0; i < n; i++) {
+            sumOfOriginalNumbers += originalArray[i];
+        }
+
+        return new Result(firstOriginalNumber, sumOfOriginalNumbers);
+    }
+}
+
+4.DECREASING SEQUENCE
+import java.io.*;
+import java.util.*;
+
+class UserMainCode {
+
+    public static class Result {
+        public final int output1;
+        public final int output2;
+
+        public Result(int out1, int out2) {
+            this.output1 = out1;
+            this.output2 = out2;
+        }
+    }
+
+    public Result decreasingSeq(int[] input1, int input2) {
+        int n = input2;
+        int[] arr = input1;
+
+        if (n == 0) {
+            return new Result(0, 0); // No elements, no sequences
+        }
+
+        int decreasingSequenceCount = 0;
+        int longestDecreasingSequenceLength = 0;
+        
+        // Iterate through the array to find decreasing sequences
+        for (int i = 0; i < n; ) {
+            int currentSequenceLength = 1; // Start with the current element
+            boolean inDecreasingSequence = false;
+
+            // Check if there's a decreasing trend
+            if (i + 1 < n && arr[i + 1] <= arr[i]) {
+                inDecreasingSequence = true;
+                decreasingSequenceCount++; // Increment count only when a new decreasing sequence starts
+                currentSequenceLength++; // Include the next element in the length
+                i++; // Move to the next element
+            } else {
+                // If no decreasing trend, just move to the next element
+                i++;
+                continue; 
+            }
+
+            // Continue building the current decreasing sequence
+            while (i + 1 < n && arr[i + 1] <= arr[i]) {
+                currentSequenceLength++;
+                i++;
+            }
+            
+            // Update the longest decreasing sequence length found so far
+            if (currentSequenceLength > longestDecreasingSequenceLength) {
+                longestDecreasingSequenceLength = currentSequenceLength;
+            }
+        }
+        
+        return new Result(decreasingSequenceCount, longestDecreasingSequenceLength);
+    }
+}
+
+5.MOST FREQUENTLY OCCURING DIGIT
+import java.io.*;
+import java.util.*;
+
+class UserMainCode {
+
+    public int mostFrequentlyOccurringDigit(int[] input1, int input2) {
+        // Create a frequency array for digits 0-9
+        int[] digitCounts = new int[10]; // index 0 for digit 0, index 1 for digit 1, etc.
+
+        // Iterate through each number in the input array
+        for (int i = 0; i < input2; i++) {
+            int number = input1[i];
+
+            // Handle the case of number 0 explicitly, as the loop below won't catch it
+            if (number == 0) {
+                digitCounts[0]++;
+                continue; 
+            }
+
+            // Extract digits from the current number
+            while (number > 0) {
+                int digit = number % 10; // Get the last digit
+                digitCounts[digit]++; // Increment its count
+                number /= 10; // Remove the last digit
+            }
+        }
+
+        int maxFrequency = -1;
+        int mostFrequentDigit = -1;
+
+        // Find the digit with the highest frequency
+        // Iterate from 9 down to 0 to prioritize larger digits in case of a tie
+        for (int digit = 9; digit >= 0; digit--) {
+            if (digitCounts[digit] >= maxFrequency) { // Use >= to correctly handle ties
+                maxFrequency = digitCounts[digit];
+                mostFrequentDigit = digit;
+            }
+        }
+
+        return mostFrequentDigit;
+    }
+}
+
+6.SUM OF POWER OF DIGITS
+import java.io.*;
+import java.util.*;
+
+class UserMainCode {
+
+    public int sumOfPowerOfDigits(int input1) {
+        String numStr = String.valueOf(input1); // Convert the integer to a string to easily access digits
+        int n = numStr.length(); // Get the number of digits
+
+        int totalSum = 0;
+
+        // Iterate through the digits from left to right (except the last one)
+        for (int i = 0; i < n - 1; i++) {
+            int base = Character.getNumericValue(numStr.charAt(i)); // Current digit as base
+            int exponent = Character.getNumericValue(numStr.charAt(i + 1)); // Next digit as exponent
+            totalSum += (int) Math.pow(base, exponent); // Add base^exponent to the total sum
+        }
+
+        // Handle the rightmost digit: it's raised to the power of 0
+        int lastDigit = Character.getNumericValue(numStr.charAt(n - 1));
+        totalSum += (int) Math.pow(lastDigit, 0); // Any number to the power of 0 is 1 (except 0^0 which is typically 1 in this context)
+
+        return totalSum;
+    }
+}
+
+7.SUM OF SUMS OF DIGITS IN CYCLIC ORDER
+class UserMainCode {
+
+    // Helper method to calculate the sum of digits of a given number
+    private int calculateSumOfDigits(int number) {
+        int sum = 0;
+        if (number == 0) {
+            return 0;
+        }
+        while (number > 0) {
+            sum += number % 10;
+            number /= 10;
+        }
+        return sum;
+    }
+
+    public int sumOfSumsOfDigits(int input1) {
+        String numStr = String.valueOf(input1); // Convert the integer to a string
+        int totalSumOfAllDigitSums = 0;
+
+        // Iterate through the string, effectively creating substrings by dropping the leading digit
+        for (int i = 0; i < numStr.length(); i++) {
+            String currentSubString = numStr.substring(i); // Get the substring from current index to end
+            int currentNumber = Integer.parseInt(currentSubString); // Convert substring back to integer
+            totalSumOfAllDigitSums += calculateSumOfDigits(currentNumber); // Add sum of digits of current number
+        }
+
+        return totalSumOfAllDigitSums;
+    }
+}
+
+8.IDENTIFY POSSIBLE WORDS
+import java.io.*;
+import java.util.*;
+
+class UserMainCode {
+
+    public String identifyPossibleWords(String input1, String input2) {
+        // input1: incomplete word, e.g., "Fi_er"
+        // input2: colon-separated words, e.g., "Fever:filter:Fixer:fiber:fibretailor:offer"
+
+        // Split the incomplete word into two parts around the underscore.
+        // Example: "Fi_er" -> parts[0]="Fi", parts[1]="er"
+        String[] incompleteParts = input1.split("_");
+        String prefix = incompleteParts[0];
+        String suffix = incompleteParts[1];
+
+        // Split the set of possible words into individual words
+        String[] possibleWords = input2.split(":");
+
+        StringBuilder resultBuilder = new StringBuilder();
+        
+        // Iterate through each possible word to check for a match
+        for (String word : possibleWords) {
+            // Convert both the possible word and the original incomplete word parts to lowercase
+            // for case-insensitive comparison.
+            String lowerCaseWord = word.toLowerCase();
+            String lowerCasePrefix = prefix.toLowerCase();
+            String lowerCaseSuffix = suffix.toLowerCase();
+
+            // Check if the current word matches the pattern of the incomplete word
+            // 1. Length must be the same as the incomplete word (which is input1's length)
+            // 2. Starts with the correct prefix
+            // 3. Ends with the correct suffix
+            if (lowerCaseWord.length() == input1.length() &&
+                lowerCaseWord.startsWith(lowerCasePrefix) &&
+                lowerCaseWord.endsWith(lowerCaseSuffix)) {
+                
+                // If it matches, append it to the result in uppercase, followed by a colon
+                if (resultBuilder.length() > 0) {
+                    resultBuilder.append(":");
+                }
+                resultBuilder.append(word.toUpperCase());
+            }
+        }
+
+        // If no possible words were found, return "ERROR-009"
+        if (resultBuilder.length() == 0) {
+            return "ERROR-009";
+        } else {
+            // Otherwise, return the compiled string of matching words
+            return resultBuilder.toString();
+        }
+    }
+}
+
+9.ENCODING THREE STRINGS
+import java.io.*;
+import java.util.*;
+
+class UserMainCode {
+
+    public static class Result {
+        public final String output1;
+        public final String output2;
+        public final String output3;
+
+        public Result(String out1, String out2, String out3) {
+            this.output1 = out1;
+            this.output2 = out2;
+            this.output3 = out3;
+        }
+    }
+
+    // Helper function to split a string into FRONT, MIDDLE, END parts
+    private String[] splitIntoParts(String s) {
+        int len = s.length();
+        String[] parts = new String[3]; // parts[0]=FRONT, parts[1]=MIDDLE, parts[2]=END
+
+        int baseLen = len / 3;
+        int remainder = len % 3;
+
+        int frontLen = baseLen;
+        int middleLen = baseLen;
+        int endLen = baseLen;
+
+        if (remainder == 1) {
+            middleLen++;
+        } else if (remainder == 2) {
+            frontLen++;
+            endLen++;
+        }
+        // Ensure that sum of lengths equals original length, needed if remainder logic is off
+        // The above logic correctly distributes remainder, so this might be redundant
+        // but it's a good sanity check if the distribution gets complex.
+        // For this problem's distribution (remainder 0, 1, or 2), the above is sufficient.
+
+        parts[0] = s.substring(0, frontLen);
+        parts[1] = s.substring(frontLen, frontLen + middleLen);
+        parts[2] = s.substring(frontLen + middleLen, len);
+
+        return parts;
+    }
+
+    // Helper function to toggle the case of characters in a string
+    private String toggleCase(String s) {
+        StringBuilder toggled = new StringBuilder();
+        for (char c : s.toCharArray()) {
+            if (Character.isLowerCase(c)) {
+                toggled.append(Character.toUpperCase(c));
+            } else if (Character.isUpperCase(c)) {
+                toggled.append(Character.toLowerCase(c));
+            } else {
+                toggled.append(c); // Append as is if not a letter (e.g., spaces, numbers, symbols)
+            }
+        }
+        return toggled.toString();
+    }
+
+
+    public Result encodeThreeStrings(String input1, String input2, String input3) {
+        // Step 1: Break each string into FRONT, MIDDLE, END parts
+        String[] parts1 = splitIntoParts(input1);
+        String[] parts2 = splitIntoParts(input2);
+        String[] parts3 = splitIntoParts(input3);
+
+        // Step 2: Concatenate parts to form three output strings
+        String output1 = parts1[0] + parts2[0] + parts3[0]; // FRONT parts
+        String output2 = parts1[1] + parts2[1] + parts3[1]; // MIDDLE parts
+        String output3 = parts1[2] + parts2[2] + parts3[2]; // END parts
+
+        // Step 3: Toggle the case of characters in output3
+        output3 = toggleCase(output3);
+
+        // Return the results in a Result object
+        return new Result(output1, output2, output3);
+    }
+}
+
+
 
